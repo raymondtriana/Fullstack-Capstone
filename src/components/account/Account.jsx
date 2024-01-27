@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { getUser } from "../api/API";
+import Cart from "../cart/Cart";
 import Navbar from "../navbar/Navbar";
 export default function Account(props) {
   const [accountInfo, setAccountInfo] = useState(null);
@@ -23,6 +24,7 @@ export default function Account(props) {
       ) : (
         <></>
       )}
+        <Cart></Cart>
     </>
   );
 }

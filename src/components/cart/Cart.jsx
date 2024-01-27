@@ -5,16 +5,22 @@ import { getCart } from "../api/API";
 import { getProduct } from "../api/API";
 import ProductDetails from "../product_details/ProductDetails";
 import ProductCart from "../productCart/productCart";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export default function Cart(props) {
   const [cartInfo, setCartInfo] = useState(null);
   const [product, setProduct] = useState(null);
+
   useEffect(() => {
     getCart(1, setCartInfo);
   }, []);
+
   return (
     <>
-      <Navbar />
-      <h1>CART</h1>
+      <h2>CART</h2>
+      <Link to={"/checkout"}>
+              <button className="nav-button">{"Checkout"}</button>
+            </Link>
       {cartInfo ? (
         <>
           {cartInfo.products.map((value, index) => {
@@ -23,8 +29,9 @@ export default function Cart(props) {
                 <ProductCart
                   key={value.productId}
                   productId={value.productId}
+                  quantity={value.quantity}
+                  setCartInfo={setCartInfo}
                 />
-                <p>Quantity: {value.quantity}</p>
               </>
             );
           })}

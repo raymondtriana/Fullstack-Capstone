@@ -31,9 +31,6 @@ export default function Navbar(props) {
 
         {loggedIn ? (
           <>
-            <Link to={"/cart"}>
-              <button className="nav-button">{"cart"}</button>
-            </Link>
             <Link to={"/account"}>
               <button className="nav-button">{"account"}</button>
             </Link>
@@ -42,6 +39,8 @@ export default function Navbar(props) {
                 className="nav-button"
                 onClick={(e) => {
                   props.setToken(null);
+                  localStorage.setItem('loggedIn',false)
+                  setLoggedIn(false)
                 }}
               >
                 {"Log Out"}

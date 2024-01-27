@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import { addToCart } from "../api/API";
 export default function Product(props) {
   const navigate = useNavigate();
 
@@ -6,7 +7,11 @@ export default function Product(props) {
     navigate("/product/" + props.product.id);
   }
 
-  function handleCheckOutButton(e) {}
+  async function handleCheckOutButton(e) {
+    if(localStorage.getItem('loggedIn') == "true")
+      await addToCart(props.product.id,"01/27/2024",props.product)
+  }
+
   return (
     <>
       <h3>{props.product.title}</h3>
@@ -33,7 +38,7 @@ export default function Product(props) {
           handleCheckOutButton(e);
         }}
       >
-        Check out
+        Add to cart
       </button>
     </>
   );
