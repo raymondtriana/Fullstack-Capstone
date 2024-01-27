@@ -1,3 +1,4 @@
+import "./Cart.css"
 import Navbar from "../navbar/Navbar";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -19,10 +20,10 @@ export default function Cart(props) {
     <>
       <h2>CART</h2>
       <Link to={"/checkout"}>
-              <button className="nav-button">{"Checkout"}</button>
-            </Link>
+        <button className="nav-button">{"Checkout"}</button>
+      </Link>
       {cartInfo ? (
-        <>
+        <div className="productsContainer" >
           {cartInfo.products.map((value, index) => {
             return (
               <>
@@ -35,7 +36,7 @@ export default function Cart(props) {
               </>
             );
           })}
-        </>
+        </div>
       ) : (
         <></>
       )}

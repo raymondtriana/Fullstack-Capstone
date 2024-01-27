@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import { addToCart } from "../api/API";
+import './Product.css'
 export default function Product(props) {
   const navigate = useNavigate();
 
@@ -13,19 +14,20 @@ export default function Product(props) {
   }
 
   return (
-    <>
-      <h3>{props.product.title}</h3>
-      <h4>{props.product.category}</h4>
-      <em>{props.product.description}</em>
+    <div className="productContainer">
+      <h3 className="productTitle">{props.product.title}</h3>
+      <h4 className="productCategory">{props.product.category}</h4>
       <img
         src={props.product.image}
         alt={props.product.title}
-        style={{ width: "100px" }}
+        className="productImage"
       />
-      <p>Rating: {props.product.rating.rate}</p>
-      <p>Review Count: {props.product.rating.count}</p>
+      <div className="detailsDiv">
+      <em className="productDescription">{props.product.description}</em>
+      <p className="productRating">Rating: {props.product.rating.rate}</p>
+      <p className="productReviewCount">Review Count: {props.product.rating.count}</p>
 
-      <p>${props.product.price}</p>
+      <p className="productPrice">${props.product.price}</p>
       <button
         onClick={(e) => {
           handleDetailsButton(e);
@@ -40,6 +42,7 @@ export default function Product(props) {
       >
         Add to cart
       </button>
-    </>
+      </div>
+    </div>
   );
 }

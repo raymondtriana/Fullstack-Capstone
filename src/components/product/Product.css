@@ -1,0 +1,49 @@
+.productContainer {
+    background-color: rgb(240, 240, 240);
+    width: 256px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.productTitle {
+    background-color: rgb(218, 218, 218);
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.productCategory {
+    background-color: rgb(177, 177, 177);
+    text-align: center;
+    margin-top: 0;
+    font-size: 14pt;
+}
+
+.productImage {
+    width: 256px;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+}
+
+
+
+.detailsDiv {
+    align-self: flex-end;
+    align-items: flex-end;
+    background-color: rgb(184, 184, 184);
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+
+.productDescription {
+}
+
+.productRating {}
+
+.productReviewCount {}
+
+.productPrice {}

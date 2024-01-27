@@ -67,7 +67,7 @@ export default function Checkout(props) {
             <label htmlFor="">TOTAL: ${total}</label>
             <br />
             <Link to={"/thankyou"}>
-                <button className="nav-button">{"Checkout"}</button>
+                <button className="nav-button" onClick={(e)=>{localStorage.removeItem('cart');localStorage.setItem('loggedIn',false)}}>{"Checkout"}</button>
             </Link>
         </form>
         <h2>ITEMS IN CART</h2>

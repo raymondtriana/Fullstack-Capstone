@@ -1,3 +1,4 @@
+import "./Navbar.css"
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +17,6 @@ export default function Navbar(props) {
   return (
     <div className="nav-div">
       <div className="nav-inner-div">
-        <p className="nav-title">Navigations</p>
         {/* <Link to={"/"}>
           <button className="nav-button">Home</button>
         </Link> */}
@@ -39,8 +39,6 @@ export default function Navbar(props) {
                 className="nav-button"
                 onClick={(e) => {
                   props.setToken(null);
-                  localStorage.setItem('loggedIn',false)
-                  setLoggedIn(false)
                 }}
               >
                 {"Log Out"}

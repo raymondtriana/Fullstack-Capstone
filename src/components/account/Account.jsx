@@ -1,3 +1,4 @@
+import "./Account.css"
 import { useEffect } from "react";
 import { useState } from "react";
 import { getUser } from "../api/API";
@@ -11,20 +12,25 @@ export default function Account(props) {
 
   return (
     <>
-        <Navbar token={props.token} setToken={props.setToken}/>
-      <h1>ACCOUNT</h1>
+      <Navbar token={props.token} setToken={props.setToken} />
+      <h1 className="accountHeader">ACCOUNT</h1>
+      <hr />
       {accountInfo ? (
-        <div>
-          <p>{accountInfo.email}</p>
-          <p>{accountInfo.phone}</p>
-          <p>{accountInfo.username}</p>
-          <p>{accountInfo.name.firstname}</p>
-          <p>{accountInfo.name.lastname}</p>
+        <div >
+          <div className="accountInfo">
+            <p id="accountInfo">account info:</p>
+            <p>{accountInfo.email}</p>
+            <p>{accountInfo.phone}</p>
+            <p>{accountInfo.username}</p>
+            <p>{accountInfo.name.firstname}</p>
+            <p>{accountInfo.name.lastname}</p>
+          </div>
+          <hr />
         </div>
       ) : (
         <></>
       )}
-        <Cart></Cart>
+      <Cart></Cart>
     </>
   );
 }
