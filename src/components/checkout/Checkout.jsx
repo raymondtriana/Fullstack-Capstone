@@ -1,3 +1,4 @@
+import "../product/Product.css"
 import { useState } from "react";
 import { useEffect } from "react";
 import { getCart } from "../api/API";
@@ -67,25 +68,29 @@ export default function Checkout(props) {
             <label htmlFor="">TOTAL: ${total}</label>
             <br />
             <Link to={"/thankyou"}>
-                <button className="nav-button" onClick={(e)=>{localStorage.removeItem('cart');localStorage.setItem('loggedIn',false)}}>{"Checkout"}</button>
+                <button className="nav-button" onClick={(e) => { localStorage.removeItem('cart'); localStorage.setItem('loggedIn', false) }}>{"Checkout"}</button>
             </Link>
         </form>
         <h2>ITEMS IN CART</h2>
-        {cart ? (
-            <>
-                {cart.products.map((value, index) => {
-                    return (
-                        <CheckoutProduct
-                            key={value.productId}
-                            productId={value.productId}
-                            quantity={value.quantity}
-                            addToTotal={addToTotal}
-                        />
-                    );
-                })}
-            </>
-        ) : (
-            <></>
-        )}
+        <div className="productsContainer" >
+
+
+            {cart ? (
+                <>
+                    {cart.products.map((value, index) => {
+                        return (
+                            <CheckoutProduct
+                                key={value.productId}
+                                productId={value.productId}
+                                quantity={value.quantity}
+                                addToTotal={addToTotal}
+                            />
+                        );
+                    })}
+                </>
+            ) : (
+                <></>
+            )}
+        </div>
     </>);
 }

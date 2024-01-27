@@ -8,7 +8,7 @@ import { login } from "../api/API";
 export default function Login(props) {
   const navigate = useNavigate();
   useEffect(() => {
-    if (props.token) navigate("/account");
+    if (localStorage.getItem('loggedIn') == "true") navigate("/account");
   }, [props.token]);
 
   function handleSubmit(e) {
@@ -57,7 +57,7 @@ export default function Login(props) {
                 value={"m38rmF$"}
               />
             </label>
-            <input type="submit" value="Log In" />
+            <input type="submit" value="Log In" onClick={(e) => { localStorage.setItem('loggedIn', true) }} />
             <button
               onClick={(e) => {
                 navigate("/register");

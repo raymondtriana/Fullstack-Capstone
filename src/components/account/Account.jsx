@@ -12,7 +12,7 @@ export default function Account(props) {
 
   return (
     <>
-      <Navbar token={props.token} setToken={props.setToken} />
+      <Navbar token={localStorage.getItem('loggedIn')} setToken={props.setToken} />
       <h1 className="accountHeader">ACCOUNT</h1>
       <hr />
       {accountInfo ? (

@@ -14,7 +14,7 @@ export default function Register(props) {
 
   return (
     <>
-      <Navbar />
+      <Navbar token={localStorage.getItem('loggedIn')}/>
       <h1>REGISTER</h1>
       <form
         action=""

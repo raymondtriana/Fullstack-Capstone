@@ -5,14 +5,11 @@ import { useNavigate } from "react-router-dom";
 export default function Navbar(props) {
   const navigate = useNavigate();
 
-  const [loggedIn, setLoggedIn] = useState(false);
-  useEffect(() => {
-    if (!props.token) {
-      setLoggedIn(false);
-      return;
-    }
-    setLoggedIn(true);
-  }, [props.token]);
+  const [loggedIn, setLoggedIn] = useState(null);
+
+  useEffect(()=>{
+    setLoggedIn(props.token)
+  },[props.token])
 
   return (
     <div className="nav-div">
@@ -29,7 +26,7 @@ export default function Navbar(props) {
           Home
         </button>
 
-        {loggedIn ? (
+        {loggedIn != null && loggedIn != "false" ? (
           <>
             <Link to={"/account"}>
               <button className="nav-button">{"account"}</button>
@@ -39,6 +36,7 @@ export default function Navbar(props) {
                 className="nav-button"
                 onClick={(e) => {
                   props.setToken(null);
+                  localStorage.setItem('loggedIn',false)
                 }}
               >
                 {"Log Out"}

@@ -28,7 +28,7 @@ export default function CheckoutProduct(props) {
     return (
         <>
             {productInfo ? <>
-                <div>
+                <div className="productContainer" >
                     <h3>{productInfo.title}</h3>
                     <h4>{productInfo.category}</h4>
                     <em>{productInfo.description}</em>
