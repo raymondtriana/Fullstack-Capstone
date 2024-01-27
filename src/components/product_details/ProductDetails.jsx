@@ -14,7 +14,7 @@ export default function ProductDetails(props) {
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar token={localStorage.getItem('loggedIn')}></Navbar>
       <h1>Product Details</h1>
       {productDetails ? (
         <>
