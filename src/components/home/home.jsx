@@ -6,6 +6,8 @@ export default function Home(props) {
   const [products, setProducts] = useState([]);
   const [sortOption, setsortOption] = useState('');
   const [sortOrder, setSortOrder] = useState('asc');
+  const [filterOption,setFilterOption] = useState('')
+  const [search,setSearch] = useState('')
 
   useEffect(() => {
     getAllProducts(setProducts);
@@ -41,7 +43,6 @@ export default function Home(props) {
           break;
         case 'price':
           sortedPrices = [...products].sort((a, b) => {
-            console.log(a.price)
             if (a.price < b.price)
               return -1
             if (a.price > b.price)
@@ -87,7 +88,6 @@ export default function Home(props) {
         break;
       case 'price':
         sortedPrices = [...products].sort((a, b) => {
-          console.log(a.price)
           if (a.price < b.price)
             return 1
           if (a.price > b.price)
@@ -129,7 +129,7 @@ export default function Home(props) {
       <>
         <label htmlFor="">sort</label>
         <select value={sortOption} onChange={(e) => { setsortOption(e.target.value) }}>
-          <option value="">Select an option</option>
+          <option value="">None</option>
           <option value="name">Name</option>
           <option value="price">Price</option>
           <option value="rating">Rating</option>
@@ -140,9 +140,31 @@ export default function Home(props) {
           <option value="desc">Descending</option>
         </select>
       </>
+      <><label htmlFor="">filter</label>
+      <select value={filterOption} onChange={(e) => { setFilterOption(e.target.value) }}>
+          <option value="">None</option>
+          <option value="jewelery">Jewelery</option>
+          <option value="men's clothing">Men's Clothing</option>
+          <option value="women's clothing">Women's Clothing</option>
+          <option value="electronics">Electronics</option>
+        </select>
+      </>
+      <>
+      <label htmlFor="">Search</label>
+      <input type="text" name="" id="" onChange={(e)=>{setSearch(e.target.value)}}/>
+      </>
       {products ? <>
         {products.map((product) => {
-          return (<Product key={product.id} product={product} />);
+          if(!product.title.toLowerCase().includes(search.toLowerCase()))
+            return(<></>);
+          console.log(product)
+          if(filterOption != ''){
+            if(product.category == filterOption)
+              return (<Product key={product.id} product={product} />);
+          }
+          else{
+            return (<Product key={product.id} product={product} />);
+          }
         })}</> : <></>}
     </>
   );
