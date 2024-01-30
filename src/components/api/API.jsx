@@ -34,15 +34,15 @@ CART
 
 export const getCart = async function (id, setter) {
   try {
-    if (await hasItem('cart')==true) {
-      let cart = await getObject('cart');
-      setter(cart)
+    if ((await hasItem("cart")) == true) {
+      let cart = await getObject("cart");
+      setter(cart);
       return cart;
     }
     const response = await fetch(BASE_URL + "carts/" + id);
     const result = await response.json();
     setter(result);
-    await storeObject('cart',result)
+    await storeObject("cart", result);
     return result;
   } catch (error) {
     console.log(error);
@@ -51,16 +51,17 @@ export const getCart = async function (id, setter) {
 };
 
 export const addToCart = async function (id, date, product) {
-  let cart = await getObject('cart')
-  for(let i in cart.products){
-    if(cart.products[i].productId == id)
-      cart.products[i].quantity += 1
-      await storeObject('cart',cart)
-      return
+  let cart = await getObject("cart");
+  for (let i in cart.products) {
+    if (cart.products[i].productId == id) {
+      cart.products[i].quantity += 1;
+      await storeObject("cart", cart);
+      return;
+    }
   }
-  cart.products.push({'productId':product.id,'quantity':1})
-  await storeObject('cart',cart)
-}
+  cart.products.push({ productId: product.id, quantity: 1 });
+  await storeObject("cart", cart);
+};
 
 /*
 ACCOUNT
@@ -80,7 +81,7 @@ export const login = async function (data) {
     });
     const result = await response.json();
     console.log(result);
-    localStorage.setItem('loggedIn',true)
+    localStorage.setItem("loggedIn", true);
     return result;
   } catch (error) {
     console.log(error);
